@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-/* ─── EXACT HOSTING DEFAULTS ─────────────────────────────────────── */
+/* - EXACT HOSTING DEFAULTS - */
 const EH_SPF = "v=spf1 include:spf.exacthosting.com ~all";
 // MX pattern: mx.{domain}.cust.a.hostedemail.com OR mx.{domain}.cust.b.hostedemail.com
 function expectedMX(domain) {
@@ -10,14 +10,14 @@ function expectedMX(domain) {
   ];
 }
 
-/* ─── PUBLIC DNS RESOLVERS ────────────────────────────────────────── */
+/* - PUBLIC DNS RESOLVERS - */
 const RESOLVERS = [
   { name: "Google",     url: "https://dns.google/resolve",                color: "#4285F4" },
   { name: "Cloudflare", url: "https://cloudflare-dns.com/dns-query",      color: "#F48120" },
   { name: "OpenDNS",    url: "https://doh.opendns.com/dns-query",         color: "#4CAF50" },
 ];
 
-/* ─── STYLES ──────────────────────────────────────────────────────── */
+/* - STYLES - */
 const STYLE = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -56,10 +56,10 @@ const STYLE = `
     min-height: 100vh;
   }
 
-  /* ── LAYOUT ── */
+  /* - LAYOUT - */
   .app { max-width: 1000px; margin: 0 auto; padding: 40px 24px 80px; }
 
-  /* ── HEADER ── */
+  /* - HEADER - */
   .header { margin-bottom: 36px; }
   .header-eyebrow {
     display: inline-flex; align-items: center; gap: 6px;
@@ -73,7 +73,7 @@ const STYLE = `
   .header h1 { font-family: var(--display); font-size: 32px; font-weight: 800; color: var(--text); letter-spacing: -0.03em; line-height: 1.1; }
   .header p { font-size: 14px; color: var(--text-mid); margin-top: 6px; font-weight: 300; }
 
-  /* ── SEARCH BAR ── */
+  /* - SEARCH BAR - */
   .search-wrap {
     background: var(--white);
     border: 1px solid var(--border);
@@ -114,13 +114,13 @@ const STYLE = `
   .btn-scan:hover:not(:disabled) { background: #003d99; box-shadow: 0 4px 12px rgba(0,82,204,0.3); }
   .btn-scan:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* ── PROGRESS ── */
+  /* - PROGRESS - */
   .progress-wrap { margin-top: 14px; }
   .progress-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease; }
   .progress-label { font-size: 11px; color: var(--text-dim); font-family: var(--mono); margin-top: 6px; }
 
-  /* ── SUMMARY BAR ── */
+  /* - SUMMARY BAR - */
   .summary {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;
   }
@@ -137,7 +137,7 @@ const STYLE = `
   .col-amber { color: var(--amber); }
   .col-blue { color: var(--blue); }
 
-  /* ── SECTION ── */
+  /* - SECTION - */
   .section { margin-bottom: 16px; }
   .section-header {
     display: flex; align-items: center; justify-content: space-between;
@@ -154,7 +154,7 @@ const STYLE = `
   .chevron.open { transform: rotate(180deg); }
   .section-body { background: var(--white); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px; overflow: hidden; }
 
-  /* ── FLAGS ── */
+  /* - FLAGS - */
   .flag {
     display: flex; gap: 14px; padding: 14px 16px;
     border-bottom: 1px solid var(--border); align-items: flex-start;
@@ -174,7 +174,7 @@ const STYLE = `
   .sev-info     { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
   .sev-ok       { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
 
-  /* ── RECORD TABLE ── */
+  /* - RECORD TABLE - */
   .record-group { border-bottom: 1px solid var(--border); }
   .record-group:last-child { border-bottom: none; }
   .record-type-header {
@@ -195,7 +195,7 @@ const STYLE = `
   .rec-val  { color: var(--text); word-break: break-all; }
   .rec-ttl-warn { color: var(--amber); }
 
-  /* ── PROPAGATION GRID ── */
+  /* - PROPAGATION GRID - */
   .prop-grid { display: flex; flex-direction: column; gap: 0; }
   .prop-row {
     display: grid; grid-template-columns: 120px 1fr repeat(3, 80px);
@@ -216,7 +216,7 @@ const STYLE = `
   .dot-pending { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--border2); animation: blink 1s infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-  /* ── EMPTY / LOADING ── */
+  /* - EMPTY / LOADING - */
   .empty-state {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 60px 24px; gap: 12px; text-align: center;
@@ -225,7 +225,7 @@ const STYLE = `
   .empty-title { font-family: var(--display); font-size: 16px; font-weight: 700; color: var(--text-mid); }
   .empty-sub { font-size: 13px; color: var(--text-dim); max-width: 320px; line-height: 1.6; }
 
-  /* ── BADGE ── */
+  /* - BADGE - */
   .badge {
     font-size: 9px; font-weight: 600; letter-spacing: 0.12em; padding: 2px 7px;
     border-radius: 3px; text-transform: uppercase; font-family: var(--mono);
@@ -234,7 +234,7 @@ const STYLE = `
   .badge-err  { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
   .badge-warn { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
 
-  /* ── TTL HELPER ── */
+  /* - TTL HELPER - */
   .ttl-note { font-size: 11px; color: var(--text-dim); padding: 10px 16px; font-family: var(--mono); background: var(--bg); border-top: 1px solid var(--border); }
 
   @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
@@ -251,7 +251,7 @@ const STYLE = `
   }
 `;
 
-/* ─── DNS HELPERS ─────────────────────────────────────────────────── */
+/* - DNS HELPERS - */
 async function queryResolver(resolverUrl, domain, type) {
   try {
     const url = `${resolverUrl}?name=${encodeURIComponent(domain)}&type=${type}`;
@@ -284,11 +284,11 @@ function ttlToHuman(ttl) {
 }
 
 function ttlWarning(ttl) {
-  if (ttl > 3600) return `TTL is ${ttlToHuman(ttl)} — propagation may take up to ${ttlToHuman(ttl)} after any change`;
+  if (ttl > 3600) return `TTL is ${ttlToHuman(ttl)} -- propagation may take up to ${ttlToHuman(ttl)} after any change`;
   return null;
 }
 
-/* ─── FLAG ENGINE ─────────────────────────────────────────────────── */
+/* - FLAG ENGINE - */
 function generateFlags(records, domain) {
   const flags = [];
   const { A, AAAA, MX, TXT, spf, dmarc } = records;
@@ -317,7 +317,7 @@ function generateFlags(records, domain) {
   // MX
   const ehMX = expectedMX(domain);
   if (!MX || MX.length === 0) {
-    flags.push({ sev: "critical", icon: "✗", title: "No MX records found — email will not deliver", detail: "", fix: `Add MX records: ${ehMX.join(" and ")}` });
+    flags.push({ sev: "critical", icon: "✗", title: "No MX records found -- email will not deliver", detail: "", fix: `Add MX records: ${ehMX.join(" and ")}` });
   } else {
     const mxHosts = MX.map(r => parseMXHost(r.data));
     const ipMX = MX.filter(r => /^\d+\s+\d+\.\d+/.test(r.data));
@@ -330,7 +330,7 @@ function generateFlags(records, domain) {
       flags.push({ sev: "critical", icon: "✗", title: "MX records don't match Hosted Email pattern", detail: mxHosts.join(", "), fix: `Expected: ${ehMX[0]} and ${ehMX[1]}` });
     } else if (!hasClusterA || !hasClusterB) {
       const missing = !hasClusterA ? ehMX[0] : ehMX[1];
-      flags.push({ sev: "warning", icon: "⚠", title: `Only one mail cluster present — missing ${!hasClusterA ? "Cluster A" : "Cluster B"}`, detail: mxHosts.join(", "), fix: `Add missing MX record: ${missing}` });
+      flags.push({ sev: "warning", icon: "⚠", title: `Only one mail cluster present -- missing ${!hasClusterA ? "Cluster A" : "Cluster B"}`, detail: mxHosts.join(", "), fix: `Add missing MX record: ${missing}` });
     } else {
       flags.push({ sev: "ok", icon: "✓", title: "MX records match both Hosted Email clusters", detail: mxHosts.join(", ") });
     }
@@ -341,13 +341,13 @@ function generateFlags(records, domain) {
     flags.push({ sev: "warning", icon: "⚠", title: "No A record found", detail: "", fix: "Add an A record pointing to your server IP." });
   } else {
     const highTTL = A.find(r => r.ttl > 86400);
-    if (highTTL) flags.push({ sev: "info", icon: "ℹ", title: `A record TTL is very high (${ttlToHuman(highTTL.ttl)})`, detail: `IP: ${highTTL.data}`, fix: "Lower TTL to 300–3600 before making IP changes." });
+    if (highTTL) flags.push({ sev: "info", icon: "ℹ", title: `A record TTL is very high (${ttlToHuman(highTTL.ttl)})`, detail: `IP: ${highTTL.data}`, fix: "Lower TTL to 300-3600 before making IP changes." });
   }
 
   return flags;
 }
 
-/* ─── COMPONENTS ──────────────────────────────────────────────────── */
+/* - COMPONENTS - */
 
 function CollapsibleSection({ title, count, badge, children, defaultOpen = true }) {
   const [open, setOpen] = useState(defaultOpen);
@@ -359,7 +359,7 @@ function CollapsibleSection({ title, count, badge, children, defaultOpen = true 
           {count !== undefined && <span className="section-count">{count} record{count !== 1 ? "s" : ""}</span>}
           {badge}
         </div>
-        <span className={`chevron ${open ? "open" : ""}`}>▼</span>
+        <span className={`chevron ${open ? "open" : ""}`}>v</span>
       </div>
       {open && <div className="section-body">{children}</div>}
     </div>
@@ -374,7 +374,7 @@ function FlagItem({ sev, icon, title, detail, fix }) {
       <div className="flag-body">
         <div className="flag-title">{title}</div>
         {detail && <div className="flag-detail">{detail}</div>}
-        {fix && <div className="flag-fix">→ {fix}</div>}
+        {fix && <div className="flag-fix">-> {fix}</div>}
         <span className={`sev-tag ${cls}`}>{sev === "ok" ? "pass" : sev}</span>
       </div>
     </div>
@@ -403,7 +403,7 @@ function RecordTable({ records }) {
                 {r.ttl > 3600 ? <span className="badge badge-warn">High TTL</span> : <span />}
               </div>
             ))}
-            {warn && <div className="ttl-note">⏱ {ttlWarning(warn.ttl)}</div>}
+            {warn && <div className="ttl-note"> {ttlWarning(warn.ttl)}</div>}
           </div>
         );
       })}
@@ -425,13 +425,27 @@ function PropagationGrid({ prop }) {
         const resolverResults = prop[type]; // array of 3 results
         if (!resolverResults) return null;
         const googleRecs = resolverResults[0];
-        const primaryVal = googleRecs?.map(r => r.data).join(", ") || "—";
+        const primaryVal = googleRecs?.map(r => r.data).join(", ") || "--";
         return (
           <div className="prop-row" key={type}>
             <span className="prop-type">{type}</span>
-            <span className="prop-val">{primaryVal.length > 60 ? primaryVal.substring(0, 60) + "…" : primaryVal}</span>
+            <span className="prop-val">{primaryVal.length > 60 ? primaryVal.substring(0, 60) + "..." : primaryVal}</span>
             {resolverResults.map((recs, i) => (
               <span key={i} className="prop-cell">
                 {recs === null ? <span className="dot-fail" title="Resolver error" /> :
                  recs.length === 0 ? <span className="dot-fail" title="No record" /> :
-                 <span className="d
+                 <span className="dot-ok" title={recs.map(r => r.data).join(", ")} />}
+              </span>
+            ))}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* - MAIN - */
+export default function App() {
+  const [domain, setDomain] = useState("");
+  const [scanning, setScanning] = useState(false);
+  const [progress, setProg
