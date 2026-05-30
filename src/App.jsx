@@ -119,7 +119,9 @@ async function checkSenderScore(ip) {
     const answers = (data.Answer || []).filter(r => r.type === 1);
     if (answers.length > 0) {
       const octets = answers[0].data.split(".");
-      return { found: true, score: parseInt(octets[octets.length - 1], 10) };
+      const score = parseInt(octets[octets.length - 1], 10);
+      if (score > 100) return { found: false, score: null }; // 255 = no data
+      return { found: true, score };
     }
     return { found: false, score: null };
   } catch(e) { return { found: null, score: null }; }
